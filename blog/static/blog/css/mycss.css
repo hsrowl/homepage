@@ -1,0 +1,44 @@
+.collapsible-body ul.categories_list {
+    padding-left: 60px;
+}
+li.search {
+margin-left: 20px;
+}
+.table-of-contents a.active {
+
+    font-weight: bold;
+    padding-left: 14px;
+    border-left: 2px solid #bcaaa4;
+}
+
+.card-image {
+    width: 400px;
+    height: 300px;
+}
+
+ul.list_contact li {
+    display: inline-block;
+}
+
+.contact-icon {
+    max-width: 16px;
+    max-height: 16px;
+}
+
+.header,
+.container,
+.footer {
+    margin-left: 360px;
+}
+
+ .fixed-action-btn {
+        display: none;
+    }
+
+@media only screen and (max-width: 992px) {
+    header,
+    container,
+    footer {
+        margin-left: 0;
+    }
+}
