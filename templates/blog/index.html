@@ -15,7 +15,7 @@
                                 <div class="card-stacked">
                                     <div class="card-content">
                                         <span class="card-title">
-					<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+					<a href="{{ post.url_slug }}">{{ post.title }}</a>
 					</span>
                                         <span class="post-category">
                                     <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a>
