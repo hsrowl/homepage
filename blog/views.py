@@ -39,8 +39,8 @@ def detail(request, pk):
 """
 
 
-def detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def detail(request, url_slug):
+    post = get_object_or_404(Post, pk=url_slug)
     post.body = markdown.markdown(post.body,
                                   extensions=[
                                       'markdown.extensions.extra',
@@ -67,7 +67,7 @@ def archives(request, year, month):
     return render(request, 'blog/index.html', context={'post_list': post_list})
 
 
-def category(request, pk):
-    cate = get_object_or_404(Category, pk=pk)
+def category(request, url_slug):
+    cate = get_object_or_404(Category, pk=url_slug)
     post_list = Post.objects.filter(category=cate)
     return render(request, 'blog/index.html', context={'post_list': post_list})
