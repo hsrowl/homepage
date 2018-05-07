@@ -66,7 +66,7 @@ class Post(models.Model):
     # 因为我们规定一篇文章只能有一个作者，而一个作者可能会写多篇文章，因此这是一对多的关联关系，和 Category 类似。
     author = models.ForeignKey(User)
     #自定义url_slug
-    url_slug = models.SlugField(editable=False)
+    url_slug = models.SlugField(max_length=200)
 
     def __str__(self):
         return self.title
@@ -76,7 +76,7 @@ class Post(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.url_slug = slugify(self.title)
+        self.url_slug = slugify(self.title, instance=self)
         super(Post, self).save(*args, **kwargs)
 
     # 自定义 get_absolute_url 方法
