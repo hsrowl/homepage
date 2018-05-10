@@ -1,9 +1,9 @@
 {% load staticfiles %}
+{% load blog_tags %}
 <!DOCTYPE html>
 <html>
 
 <head>
-    <!-- <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection"> -->
     <link href="{% static 'blog/css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="{% static 'blog/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="{% static 'blog/css/mycss.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
@@ -48,24 +48,30 @@
                 <input id="search" placeholder="Search">
             </li>
             <li>
-                <a href="#!" class="waves-effect waves-teal"><i class="material-icons">local_parking</i><span class="badge">1234</span>Posts</a>
+                <a href="#!" class="waves-effect waves-teal"><i class="material-icons">local_parking</i>Posts</a>
             </li>
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li style="background-color: white;">
-                        <a class="collapsible-header waves-effect waves-teal"><span class="badge">1234</span>Categories<i class="material-icons" style="margin-left:16px">folder_open</i></a>
+                        <a class="collapsible-header waves-effect waves-teal">Categories<i class="material-icons" style="margin-left:16px">folder_open</i></a>
                         <div class="collapsible-body">
-                            <ul class="categories_list">
-                                <li><a href="#!" class="waves-effect waves-teal"><span class="badge">12</span>First</a></li>
-                                <li><a href="#!" class="waves-effect waves-teal"><span class="badge">134</span>Second</a></li>
-                                <li><a href="#!" class="waves-effect waves-teal"><span class="badge">14</span>Third</a></li>
-                                <li><a href="#!" class="waves-effect waves-teal"><span class="badge">34</span>Fourth</a></li>
-                            </ul>
+                            {% get_categories as category_list %}
+			 <ul class="categories_list">
+
+			  {% for category in category_list %}
+				<li>
+				    <a href="{% url 'blog:category' category.pk %}" class="waves-effect waves-teal">
+					<span class="badge">({{ category.num_posts }})</span>{{ category.name }}
+				    </a>
+				</li>
+				{% empty %} 暂无分类！ {% endfor %}
+
+			</ul>
                         </div>
                     </li>
                 </ul>
             </li>
-            <li><a href="#!" class="waves-effect waves-teal"><i class="material-icons">local_offer</i><span class="badge">1234</span>Tags</a></li>
+            <li><a href="#!" class="waves-effect waves-teal"><i class="material-icons">local_offer</i>Tags</a></li>
             <li><a href="#!" class="waves-effect waves-teal"><i class="material-icons">face</i>About</a></li>
             <li><a href="#!" class="waves-effect waves-teal"><i class="material-icons">rss_feed</i>RSS</a></li>
         </ul>
@@ -92,10 +98,12 @@
         </div>
     </footer>
     <!--javascript -->
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="{% static 'blog/js/materialize.js' %}"></script>
     <script src="{% static 'blog/js/plugins.js' %}"></script>
     <script src="{% static 'blog/js/myjs.js' %}"></script>
+
 </body>
 
 </html>

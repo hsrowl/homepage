@@ -23,6 +23,12 @@
     $(document).ready(function() {
         $('.collapsible').collapsible();
     });
+    $(document).ready(function(){
+	$("h2,h3,h4").addClass("section scrollspy");
+	});
+    $(document).ready(function(){
+        $("div.toc ul:first").addClass("section table-of-contents fixed");
+	});
     $(document).ready(function() {
         $('.scrollspy').scrollSpy();
     });

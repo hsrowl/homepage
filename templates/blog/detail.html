@@ -20,42 +20,7 @@
                                 <span class="views-count">588 views</span>
                             </div>
                         </header>
-                        <div id="structure" class="section scrollspy">
-				{{ post.body|safe }}
-                            <p class="caption">
-                                This is a slide out menu. You can add a dropdown to your sidebar by using our collapsible component. If you want to see a demo, our sidebar will use this on smaller screens. To use this in conjunction with a fullscreen navigation, you have to use two copies of the same UL.
-                            </p>
-                        </div>
-                        <div id="initialization" class="section scrollspy">
-                            <p class="caption">
-                                This is a slide out menu. You can add a dropdown to your sidebar by using our collapsible component. If you want to see a demo, our sidebar will use this on smaller screens. To use this in conjunction with a fullscreen navigation, you have to use two copies of the same UL.
-                            </p>
-                        </div>
-                        <div id="options" class="section scrollspy">
-                            <p class="caption">
-                                This is a slide out menu. You can add a dropdown to your sidebar by using our collapsible component. If you want to see a demo, our sidebar will use this on smaller screens. To use this in conjunction with a fullscreen navigation, you have to use two copies of the same UL.
-                            </p>
-                        </div>
-                        <div id="methods" class="section scrollspy">
-                            <p class="caption">
-                                This is a slide out menu. You can add a dropdown to your sidebar by using our collapsible component. If you want to see a demo, our sidebar will use this on smaller screens. To use this in conjunction with a fullscreen navigation, you have to use two copies of the same UL.
-                            </p>
-                        </div>
-                        <div id="properties" class="section scrollspy">
-                            <p class="caption">
-                                This is a slide out menu. You can add a dropdown to your sidebar by using our collapsible component. If you want to see a demo, our sidebar will use this on smaller screens. To use this in conjunction with a fullscreen navigation, you have to use two copies of the same UL.
-                            </p>
-                        </div>
-                        <div id="close-trigger" class="section scrollspy">
-                            <p class="caption">
-                                This is a slide out menu. You can add a dropdown to your sidebar by using our collapsible component. If you want to see a demo, our sidebar will use this on smaller screens. To use this in conjunction with a fullscreen navigation, you have to use two copies of the same UL.
-                            </p>
-                        </div>
-                        <div id="variations" class="section scrollspy">
-                            <p class="caption">
-                                This is a slide out menu. You can add a dropdown to your sidebar by using our collapsible component. If you want to see a demo, our sidebar will use this on smaller screens. To use this in conjunction with a fullscreen navigation, you have to use two copies of the same UL.
-                            </p>
-                        </div>
+                           {{ post.body|safe }}			
                         <footer>
                             <div class="tags">
                                 <div class="chip">
@@ -99,21 +64,14 @@
                     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                 </div>
                 <!-- 右侧文章索引 -->
-                <div class="col hide-on-small-only m3 xl3 offset-xl1">
-                    <!-- col hide-on-small-only m3 xl3 offset-xl1 -->
+                <div class="col hide-on-small-only m3 xl3 offset-xl1">	            
                     <div class="toc-wrapper" style="margin-left: 40px;margin-top: 160px;">
-                        <div style="height: 1px;">
-                            <ul class="section table-of-contents fixed">
-                                <li><a href="#structure">Structure</a></li>
-                                <li><a href="#initialization">Intialization</a></li>
-                                <li><a href="#options">Options</a></li>
-                                <li><a href="#methods">Methods</a></li>
-                                <li><a href="#properties">Properties</a></li>
-                                <li><a href="#close-trigger">Close Trigger</a></li>
-                                <li><a href="#variations">Variations</a></li>
-                            </ul>
+		    {% block toc %}
+                        <div style="height: 1px;">                    
+                             {{ post.toc|safe }}
                         </div>
-                    </div>
+                   {% endblock toc %}
+                    </div> 			
                 </div>
             </div>
         </div>
