@@ -9,22 +9,23 @@
     <link href="{% static 'blog/css/mycss.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'blog/css/highlights/github.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{{ post.title }}</title>
 </head>
 
 <body>
     <header class="z-depth-0">
         <div class="navbar">
+		<div class="container">
+		    <a href="#" data-target="nav-mobile" class="top-nav sidenav-trigger full hide-on-large-only">
+		        <i class="material-icons">menu</i>
+		    </a>
+		</div>
             <nav>
                 <div class="nav-wrapper grey darken-1">
                   <!--  <a href="#!" class="brand-logo white-text center">俺のブログ</a>--> 
                 </div>
             </nav>
-        </div>
-        <div class="container">
-            <a href="#" data-target="nav-mobile" class="top-nav sidenav-trigger full hide-on-large-only">
-                <i class="material-icons">menu</i>
-            </a>
         </div>
         <!-- 侧边抽屉 -->
         <ul id="nav-mobile" class="sidenav sidenav-fixed">
@@ -48,7 +49,7 @@
                 <input id="search" placeholder="Search">
             </li>
             <li>
-                <a href="#!" class="waves-effect waves-teal"><i class="material-icons">local_parking</i>Posts</a>
+                <a href="{% url 'blog:index' %}" class="waves-effect waves-teal"><i class="material-icons">local_parking</i>Posts</a>
             </li>
             <li>
                 <ul class="collapsible collapsible-accordion">
