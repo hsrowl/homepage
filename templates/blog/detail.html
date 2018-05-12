@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 	{% block main %}
-        <div class="container">
             <!-- 文章 -->
             <div class="row">
-                <div class="col s12 m9 offset-m1 xl7 offset-xl1">
+                <div class="col s12 m8 offset-m1 xl7 offset-xl1">
                     <article>
-                        <header class="center">
-                            <h1>{{ post.title }}</h1>
+                     
+                            <h1 class="header">{{ post.title }}</h1>
                             <div class="post-meta" style="font-size: 12px">
                                 <span class="post-date"><time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }}</time></span>
                                 <span class="horizontal_divider">|</span>
@@ -19,9 +18,9 @@
                                 <span class="horizontal_divider">|</span>
                                 <span class="views-count">588 views</span>
                             </div>
-                        </header>
+                      
                            {{ post.body|safe }}			
-                        <footer>
+                        <div class="footer">
                             <div class="tags">
                                 <div class="chip">
                                     Tag1
@@ -29,16 +28,14 @@
                             </div>
                             <div class="divider" style="margin-top: 100px;"></div>
                             <div class="row" style="margin-top: 10px;margin-bottom: 100px">
-                               <ul>
-                                    <li style="float: left;list-style: none;">
-                                        <a href="#!"><i class="material-icons">arrow_back</i><span class="post_back" style="font-size: 28px">back</span></a>
-                                    </li>
-                                    <li style="float: left;list-style: none;">
-                                        <a href="#!" style="margin-left: 420px"><span class="post_forward" style="font-size: 28px">next</span><i class="material-icons">arrow_forward</i></a>
-                                    </li >
-                                </ul>
+                            <div class="col s12 m4 l2">
+                                <a href="#!"><i class="material-icons">arrow_back</i><span class="post_back" style="font-size: 28px">back</span></a>
                             </div>
-                        </footer>
+                            <div class="col s12 m4 l8"></div>
+                            <div class="col s12 m4 l2">
+                                <a href="#!"><span class="post_forward" style="font-size: 28px">next</span><i class="material-icons">arrow_forward</i></a>
+                            </div>
+                        </div>
                     </article>
                     <!-- Disqus评论系统 -->
                     <div id="disqus_thread"></div>
@@ -74,6 +71,5 @@
                     </div> 			
                 </div>
             </div>
-        </div>
     {% endblock main %}
     
