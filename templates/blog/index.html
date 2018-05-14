@@ -10,14 +10,15 @@
                         <div class="col s12 m12">
                             <div class="card large">
                                 <div class="card-image">
-				    <img src="https://i.loli.net/2018/05/14/5af8fde055204.jpg" alt="5af8fde055204.jpg">
+<a href="{% url 'blog:detail' post.url_slug %}"><img src="https://i.loli.net/2018/05/14/5af955d9b6d45.jpg" alt="5af955d9b6d45.jpg"></a>
+				     
+					<a href="{% url 'blog:detail' post.url_slug %}"><span class="card-title">{{ post.title }}</span></a>
+					
                                   <!--  <img src="{% static 'blog/images/sample-1.jpg' %}">-->
                                 </div>
-                                <div class="card-stacked">
+                                <!-- <div class="card-stacked"> -->
                                     <div class="card-content">
-                                        <span class="card-title">
-					<a href="{% url 'blog:detail' post.url_slug %}">{{ post.title }}</a>
-					</span>
+                                       
                                         <span class="post-category">
                                     <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a>
                                 </span>
@@ -36,9 +37,10 @@
                                             <i class="material-icons">comment</i>
                                             <a href="{% url 'blog:detail' post.url_slug %}#disqus_thread" data-disqus-identifier="{{ post.url_slug }}"><font size="1" color="grey">01</font></a>
                                         </div>
-                                        <a href="{% url 'blog:detail' post.url_slug %}" class="right">read more</a>
+                                        <a href="{% url 'blog:detail' post.url_slug %}" class="right">read more<i class="material-icons right">arrow_forward</i></a>
+                                        
                                     </div>
-                                </div>
+                               <!-- </div>-->
                             </div>
                         </div>
                     </article>
