@@ -27,14 +27,14 @@
                                     </a>
                                 </span>
                                         <span class="post-author"><a href="#">{{ post.author }}</a></span>
-                                        <p>{{ post.excerpt }}</p>
+                                        <span> <p>{{ post.excerpt }}</p></span>
                                     </div>
                                     <div class="card-action">
                                         <div class="left">
                                             <i class="material-icons">remove_red_eye</i>
                                             <font size="1" color="grey">{{ post.views }}</font>
                                             <i class="material-icons">comment</i>
-                                            <a href="{% url 'blog:detail' post.url_slug %}#disqus_thread"><font size="1" color="grey">233</font></a>
+                                            <a href="{% url 'blog:detail' post.url_slug %}#disqus_thread" data-disqus-identifier="{{ post.url_slug }}"><font size="1" color="grey">01</font></a>
                                         </div>
                                         <a href="{% url 'blog:detail' post.url_slug %}" class="right">read more</a>
                                     </div>

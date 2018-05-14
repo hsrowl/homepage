@@ -10,11 +10,11 @@
                             <div class="post-meta" style="font-size: 12px">
                                 <span class="post-date"><time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }}</time></span>
                                 <span class="horizontal_divider">|</span>
-                                <span class="post-category"><a href="#">>{{ post.category.name }}</a></span>
+                                <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
                                 <span class="horizontal_divider">|</span>
                                 <span class="post-author">{{ post.author }}</span>
                                 <span class="horizontal_divider">|</span>
-                                <a href="#disqus_thread">0 comment</a>
+                                <a href="#disqus_thread" data-disqus-identifier="{{ post.url_slug }}">0 comment</a>
                                 <span class="horizontal_divider">|</span>
                                 <span class="views-count">588 views</span>
                             </div>
