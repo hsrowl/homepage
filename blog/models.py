@@ -70,6 +70,7 @@ class Post(models.Model):
     author = models.ForeignKey(User)
     #自定义url_slug
     url_slug = models.SlugField(editable=False)
+    thumbnail = models.CharField(max_length=70,blank=True)
 
     def __str__(self):
         return self.title

@@ -1,73 +1,68 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-    {% block main %}
-        <div class="container">
-            <!-- 文章 -->
-            <div class="row" style="padding-top:60px">
-                <div class="col">
-                    {% for post in post_list %}
-                    <article class="post post-{{ post.pk }}">
-                        <div class="col s12 m12">
-                            <div class="card large">
-                                <div class="card-image">
-<a href="{% url 'blog:detail' post.url_slug %}"><img src="https://i.loli.net/2018/05/14/5af955d9b6d45.jpg" alt="5af955d9b6d45.jpg"></a>
-				     
-					<a href="{% url 'blog:detail' post.url_slug %}"><span class="card-title">{{ post.title }}</span></a>
-					
-                                  <!--  <img src="{% static 'blog/images/sample-1.jpg' %}">-->
-                                </div>
-                                <!-- <div class="card-stacked"> -->
-                                    <div class="card-content">
-                                       
-                                        <span class="post-category">
-                                    <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a>
-                                </span>
-                                        <span class="post-date">
-                                    <a href="#">
-                                        <time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }}</time>
-                                    </a>
-                                </span>
-                                        <span class="post-author"><a href="#">{{ post.author }}</a></span>
-                                        <span> <p>{{ post.excerpt }}</p></span>
-                                    </div>
-                                    <div class="card-action">
-                                        <div class="left">
-                                            <i class="material-icons">remove_red_eye</i>
-                                            <font size="1" color="grey">{{ post.views }}</font>
-                                            <i class="material-icons">comment</i>
-                                            <a href="{% url 'blog:detail' post.url_slug %}#disqus_thread" data-disqus-identifier="{{ post.url_slug }}"><font size="1" color="grey">01</font></a>
-                                        </div>
-                                        <a href="{% url 'blog:detail' post.url_slug %}" class="right">read more<i class="material-icons right">arrow_forward</i></a>
-                                        
-                                    </div>
-                               <!-- </div>-->
-                            </div>
+{% extends 'base.html' %} {% load staticfiles %} {% block main %}
+<div class="container">
+    <!-- 文章 -->
+    <div class="row" style="padding-top:60px">
+        <div class="col">
+            {% for post in post_list %}
+            <article class="post post-{{ post.pk }}">
+                <div class="col s12 m12">
+                    <div class="card large">
+                        <div class="card-image">
+                            <img src="{{ post.thumbnail }}" alt="{{ post.title }}" onerror="this.src='{% static 'blog/images/owl-glitter-stuffed-animal-cute.jpg' %}'">
+                            <span class="card-title">{{ post.title }}</span>
+                            <span class="card-title blog-post-full-cat" style="position: absolute; right: 0">
+                      <a href="{% url 'blog:category' post.category.pk %}">
+                        <span class="new badge red accent-2" data-badge-caption="{{ post.category.name }}"></span>
+                            </a>
+                            </span>
                         </div>
-                    </article>
-                    {% empty %}
-                    <div class="col s12 m9 center">暂时还没有发布的文章！</div>
-                    {% endfor %}
-                    <!--pagination -->
-                    <div class="col s12 m9">
-    {% if is_paginated %}
-    <ul class="pagination center">
-        {% if first %}
-        <li class="waves-effect"><a href="?page=1">1</a></li>
-        {% endif %} {% if left %} {% if left_has_more %}
-        <span>...</span> {% endif %} {% for i in left %}
-        <li class="waves-effect"><a href="?page={{ i }}">{{ i }}</a></li>
-        {% endfor %} {% endif %}
-        <li class="active"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
-        {% if right %} {% for i in right %}
-        <li class="waves-effect"><a href="?page={{ i }}">{{ i }}</a></li>
-        {% endfor %} {% if right_has_more %}
-        <span>...</span> {% endif %} {% endif %} {% if last %}
-        <li class="waves-effect"><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
-        {% endif %}
-    </ul>
-    {% endif %}
-</div>
+                        <div class="card-content">
+                        <p class="ultra-small">
+    <time class="entry-date" datetime="{{ post.created_time }}">
+        {{ post.created_time }}</time>
+        <span class="ultra-small right">
+        	<i class="tiny material-icons">remove_red_eye</i><font size="1" color="grey"> {{ post.views }}</font>
+<i class="tiny material-icons">mode_comment</i>
+        	<a href="{% url 'blog:detail' post.url_slug %}#disqus_thread" data-disqus-identifier="{{ post.url_slug }}">
+                <font size="1" color="grey"> 1</font>                    
+                </a>
+        </span>
+</p>
+<span> <p>{{ post.excerpt }}</p></span>
+                        </div>
+                        <div class="card-action">
+                            <div class="chip">
+                                <img src="{% static 'blog/images/ore.jpg' %}" alt="Contact Person" class="cyan">{{ post.author }}
+                            </div>
+                            <a href="{% url 'blog:detail' post.url_slug %}" class="waves-effect waves-red btn-flat right m-0 p-0">Read more <i class="material-icons right">arrow_forward</i></a>
+                        </div>
+                    </div>
                 </div>
+            </article>
+            {% empty %}
+            <div class="col s12 m9 center">暂时还没有发布的文章！</div>
+            {% endfor %}
+            <!--pagination -->
+            <div class="col s12 m9">
+                {% if is_paginated %}
+                <ul class="pagination center">
+                    {% if first %}
+                    <li class="waves-effect waves-red"><a href="?page=1">1</a></li>
+                    {% endif %} {% if left %} {% if left_has_more %}
+                    <span>...</span> {% endif %} {% for i in left %}
+                    <li class="waves-effect waves-red"><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endfor %} {% endif %}
+                    <li class="active"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+                    {% if right %} {% for i in right %}
+                    <li class="waves-effect waves-red"><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endfor %} {% if right_has_more %}
+                    <span>...</span> {% endif %} {% endif %} {% if last %}
+                    <li class="waves-effect waves-red"><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
+                    {% endif %}
+                </ul>
+                {% endif %}
             </div>
         </div>
-	{% endblock main %}
+    </div>
+</div>
+{% endblock main %}

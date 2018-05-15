@@ -10,6 +10,21 @@ margin-left: 20px;
 
 }
 
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+  color: #ee6e73;
+  margin-right: 24px;
+  -webkit-transition: color .3s ease;
+  transition: color .3s ease;
+  text-transform: uppercase;
+}
+
+.ultra-small {
+    font-size: 0.8rem !important;
+}
+p {
+    font-family: "Roboto", sans-serif;
+}
+
 .table-of-contents a.active {
 
 

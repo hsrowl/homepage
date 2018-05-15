@@ -108,7 +108,6 @@ class PostDetailView(DetailView):
     context_object_name = 'post'
     slug_field = 'url_slug' # モデルのフィールドの名前
     slug_url_kwarg = 'url_slug' # urls.pyでのキーワードの名前
-
     def get(self, request, *args, **kwargs):
         # 覆写 get 方法的目的是因为每当文章被访问一次，就得将文章阅读量 +1
         # get 方法返回的是一个 HttpResponse 实例

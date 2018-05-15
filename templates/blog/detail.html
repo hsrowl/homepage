@@ -7,35 +7,36 @@
                     <article>
                      
                             <h1 class="header">{{ post.title }}</h1>
-                            <div class="post-meta" style="font-size: 12px">
+                            <div class="post-meta ultra-small" style="font-size: 12px">
                                 <span class="post-date"><time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }}</time></span>
                                 <span class="horizontal_divider">|</span>
-                                <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
+                                <span class="post-category">{{ post.category.name }}</span>
                                 <span class="horizontal_divider">|</span>
                                 <span class="post-author">{{ post.author }}</span>
                                 <span class="horizontal_divider">|</span>
-                                <a href="#disqus_thread" data-disqus-identifier="{{ post.url_slug }}">0 comment</a>
+                                <i class="tiny material-icons" style="font-size:0.7rem;">mode_comment</i>
+                                <span class="disqus-comment-count" data-disqus-identifier="{{ post.url_slug }}">com</span>
                                 <span class="horizontal_divider">|</span>
-                                <span class="views-count">588 views</span>
+				<i class="tiny material-icons" style="font-size:0.7rem;">remove_red_eye</i>
+                                <span class="views-count">{{ post.views }}</span>
                             </div>
                       
                            {{ post.body|safe }}			
-                        <div class="footer">
+                        <div class="footer" style="margin-top:30p">
                             <div class="tags">
                                 <div class="chip">
                                     Tag1
                                 </div>
                             </div>
-                            <div class="divider" style="margin-top: 100px;"></div>
+                        <!--     <div class="divider" style="margin-top: 100px;"></div>
                             <div class="row" style="margin-top: 10px;margin-bottom: 100px">
-                            <div class="col s12 m4 l2">
-                                <a href="#!"><i class="material-icons">arrow_back</i><span class="post_back" style="font-size: 28px">back</span></a>
-                            </div>
-                            <div class="col s12 m4 l8"></div>
-                            <div class="col s12 m4 l2">
-                                <a href="#!"><span class="post_forward" style="font-size: 28px">next</span><i class="material-icons">arrow_forward</i></a>
-                            </div>
-                        </div>
+    <div class="col">
+        <a href="#!"><i class="material-icons">arrow_back</i><span class="post_back" style="font-size: 28px">back</span></a>
+    </div>
+    <div class="col right">
+        <a href="#!"><span class="post_forward" style="font-size: 28px">next</span><i class="material-icons">arrow_forward</i></a>
+    </div>
+</div>-->
                     </article>
                     <!-- Disqus评论系统 -->
                     <div id="disqus_thread"></div>
@@ -62,7 +63,7 @@
                 </div>
                 <!-- 右侧文章索引 -->
                 <div class="col hide-on-small-only m3 xl3 offset-xl1">	            
-                    <div class="toc-wrapper" style="margin-left: 40px;margin-top: 160px;">
+                    <div class="toc-wrapper" style="margin-left: 40px;margin-top: 80px;">
 		    {% block toc %}
                         <div style="height: 1px;">                    
                              {{ post.toc|safe }}
