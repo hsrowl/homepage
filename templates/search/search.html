@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% load highlight %}{% load staticfiles %} {% block main %}
+<div class="container">
+    <!-- 文章 -->
+    <div class="row" style="padding-top:60px">
+        <div class="col" style="float:none">
+            {% if query %} {% for result in page.object_list %}
+            <article class="post post-{{ result.object.pk }}">
+                <div class="col s12 m12">
+                    <div class="card large">
+                        <div class="card-image">
+                            <img src="{{ result.object.thumbnail }}" alt="{{ result.object.title }}" onerror="this.src='{% static 'blog/images/owl-glitter-stuffed-animal-cute.jpg' %}'">
+                            <span class="card-title">{% highlight result.object.title with query %}</span>
+                            <span class="card-title blog-post-full-cat" style="position: absolute; right: 0">
+
+                      <a href="{% url 'blog:category' result.object.category.pk %}">
+
+                        <span class="new badge red accent-2" data-badge-caption="{{ result.object.category.name }}"></span>
+                            </a>
+                            </span>
+                        </div>
+                        <div class="card-content">
+                            <p class="ultra-small">
+                                <time class="entry-date" datetime="{{ result.object.created_time }}">
+                                    {{ result.object.created_time }}</time>
+                                <span class="ultra-small right">
+
+            <i class="tiny material-icons">remove_red_eye</i><font size="1" color="grey"> {{ result.object.views }}</font>
+
+<i class="tiny material-icons">mode_comment</i>
+
+            <a href="{% url 'blog:detail' result.object.url_slug %}#disqus_thread" data-disqus-identifier="{{ result.object.url_slug }}">
+
+                <font size="1" color="grey"> 1</font>                    
+
+                </a>
+
+        </span>
+                            </p>
+                            <span> <p>{% highlight result.object.body with query %}</p></span>
+                        </div>
+                        <div class="card-action">
+                            <div class="chip">
+                                <img src="{% static 'blog/images/ore.jpg' %}" alt="Contact Person" class="cyan">{{ result.object.author }}
+                            </div>
+                            <a href="{% url 'blog:detail' result.object.url_slug %}" class="waves-effect waves-red btn-flat right m-0 p-0">Read more <i class="material-icons right">arrow_forward</i></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            {% empty %}
+            <div class="no-post col s12 m9 center">no results</div>
+            {% endfor %}
+            <!--pagination -->
+            {% if page.has_previous or page.has_next %}
+            <div class="col s12 m9">
+                {% if page.has_previous %}
+                <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous
+                {% if page.has_previous %}</a>{% endif %} | {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next
+                &raquo;{% if page.has_next %}</a>{% endif %}
+            </div>
+            {% endif %} {% else %} 请输入搜索关键词，例如 django {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock main %}
