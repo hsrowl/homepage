@@ -6,8 +6,8 @@
                 <div class="col s12 m8 offset-m1 xl7 offset-xl1">
                     <article>
                      
-                            <h1 class="header">{{ post.title }}</h1>
-                            <div class="post-meta ultra-small" style="font-size: 12px">
+                            <h1 class="header" style="text-align: center;">{{ post.title }}</h1>
+                            <div class="post-meta ultra-small" style="font-size: 12px ;text-align: center;">
                                 <span class="post-date"><time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }}</time></span>
                                 <span class="horizontal_divider">|</span>
                                 <span class="post-category">{{ post.category.name }}</span>
@@ -23,11 +23,13 @@
                       
                            {{ post.body|safe }}			
                         <div class="footer" style="margin-top:30p">
-                            <div class="tags">
+			{% for tag in post.tags.all %}
+                            <div class="tags left">
                                 <div class="chip">
-                                    Tag1
+                                    {{ tag.name }}
                                 </div>
                             </div>
+			{% endfor %}
                         <!--     <div class="divider" style="margin-top: 100px;"></div>
                             <div class="row" style="margin-top: 10px;margin-bottom: 100px">
     <div class="col">
