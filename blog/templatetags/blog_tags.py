@@ -10,7 +10,7 @@ def get_recent_posts(num=5):
 
 @register.simple_tag
 def archives():
-    return Post.objects.dates('created_time', 'month', order='DESC')
+    return Post.objects.datetimes('created_time', 'second', order='DESC')
 
 @register.simple_tag
 def get_categories():

@@ -6,6 +6,8 @@ from .models import Post, Category
 from django.views.generic import ListView, DetailView
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
+from django.http import HttpResponse, HttpResponseRedirect
+
 
 class IndexView(ListView):
     model = Post
@@ -93,13 +95,17 @@ class CategoryView(IndexView):
     def get_queryset(self):
         cate = get_object_or_404(Category, pk=self.kwargs.get('pk'))
         return super(CategoryView, self).get_queryset().filter(category=cate)
-
-class ArchivesView(IndexView):
+'''
+class ArchivesView(ListView):
+    model = Post
+    template_name = 'archives.html'
+    context_object_name = 'post_list'
     def get_queryset(self):
         year = self.kwargs.get('year')
         month = self.kwargs.get('month')
-        return super(ArchivesView, self).get_queryset().filter(created_time_year=year,created_time_month=month)
-
+        day = self.kwargs.get('day')
+        return super(ArchivesView, self).get_queryset().filter(created_time__year=year,created_time__month=month,created_time__day=day)
+'''
 # 记得在顶部导入 DetailView
 class PostDetailView(DetailView):
     # 这些属性的含义和 ListView 是一样的
@@ -146,5 +152,9 @@ class PostDetailView(DetailView):
             'comment_list': comment_list
         })
         return context
+
+def archives(request):
+    post_list = Post.objects.all().order_by('-created_time')
+    return render(request, 'archives.html', context={'post_list': post_list})
 
 

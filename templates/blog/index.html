@@ -2,7 +2,7 @@
 <div class="container">
     <!-- 文章 -->
     <div class="row" style="padding-top:60px">
-        <div class="col">
+        <div class="col" style="float:none">
             {% for post in post_list %}
             <article class="post post-{{ post.pk }}">
                 <div class="col s12 m12">
@@ -45,7 +45,7 @@
             <!--pagination -->
             <div class="col s12 m9">
                 {% if is_paginated %}
-                <ul class="pagination center">
+                <ul class="pagination">
                     {% if first %}
                     <li class="waves-effect waves-red"><a href="?page=1">1</a></li>
                     {% endif %} {% if left %} {% if left_has_more %}

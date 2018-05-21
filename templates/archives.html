@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}{% load blog_tags %} {% load staticfiles %} 
+{% block main %}
+<div class="col s12 m8 offset-m1 xl7 offset-xl1">
+    
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header">
+                <i class="material-icons">filter_drama</i> 2018
+            </div>
+         {% for post in post_list %}
+            <div class="collapsible-body">
+<a href="{% url 'blog:detail' post.url_slug %}" style="color:black">
+                <span>{{ post.created_time }}</span>==>
+                <span>{{ post.title }}</span></a>
+            </div>
+{% empty %}
+            <div class="col s12 m9 center">暂时还没有发布的文章！</div>
+            {% endfor %}
+            
+        </li>
+    </ul>
+</div>
+{% endblock main %}
