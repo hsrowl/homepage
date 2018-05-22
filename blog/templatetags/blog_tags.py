@@ -1,5 +1,5 @@
 from django import template
-from ..models import Post, Category
+from ..models import Post, Category,Tag
 from django.db.models.aggregates import Count
 
 register = template.Library()
@@ -20,4 +20,4 @@ def get_categories():
 @register.simple_tag
 def get_tags():
     # 记得在顶部引入 Tag model
-    return Tag.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
+    return Tag.objects.all()

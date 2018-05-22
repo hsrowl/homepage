@@ -2,12 +2,14 @@ import markdown
 
 from django.shortcuts import render, get_object_or_404
 from comments.forms import CommentForm
-from .models import Post, Category
+from .models import Post, Category, Tag
 from django.views.generic import ListView, DetailView
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
 from django.http import HttpResponse, HttpResponseRedirect
-
+from django.db.models.aggregates import Count
+from .libs.tag_cloud import TagCloud
+import pdb;
 
 class IndexView(ListView):
     model = Post
@@ -93,7 +95,7 @@ class IndexView(ListView):
 
 class CategoryView(IndexView):
     def get_queryset(self):
-        cate = get_object_or_404(Category, pk=self.kwargs.get('pk'))
+        cate = get_object_or_404(Category, name=self.kwargs.get('name'))
         return super(CategoryView, self).get_queryset().filter(category=cate)
 '''
 class ArchivesView(ListView):
@@ -153,8 +155,52 @@ class PostDetailView(DetailView):
         })
         return context
 
-def archives(request):
+
+class ArchivesView(IndexView):
+    model = Post
+    template_name = 'archives.html'
     post_list = Post.objects.all().order_by('-created_time')
-    return render(request, 'archives.html', context={'post_list': post_list})
+    context_object_name = 'post_list'
+
+class TagcloudView(ListView):
+    model = Tag
+    template_name = 'tagcloud.html'
+    context_object_name = 'tag_list'
+
+    def get_context_data(self, **kwargs):
+        context = super(TagcloudView, self).get_context_data(**kwargs)
+        tag_list = context.get("tag_list")
+
+
+        for tag in tag_list:
+            blog_count = Post.objects.filter(tags__pk=tag.id).count()
+            tag.blog_count = blog_count
+
+
+        max_count = min_count = 0
+        if len(tag_list) > 0:
+            max_count = max(tag_list, key=lambda tag: tag.blog_count).blog_count
+            min_count = min(tag_list, key=lambda tag: tag.blog_count).blog_count
+
+        tag_cloud = TagCloud(min_count, max_count)
+
+        for tag in tag_list:
+            tag_font_size = tag_cloud.get_tag_font_size(tag.blog_count)
+            color = tag_cloud.get_tag_color(tag.blog_count)
+            tag.color = color
+            tag.font_size = tag_font_size
+       # pdb.set_trace()
+        return context
+
+class TagsView(IndexView):
+    def get_queryset(self):
+   #    pdb.set_trace()
+        tag = get_object_or_404(Tag, name=self.kwargs.get('name'))
+        
+        return super(TagsView, self).get_queryset().filter(tags=tag)
+
+class AboutView(IndexView):
+    template_name = 'about.html'
+
 
 

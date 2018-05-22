@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}{% load staticfiles %}
+{% block main %}
+<div class="col s12 m8 offset-m1 xl7 offset-xl1">
+
+     <h3 style="text-align:center"> tagcloud</h3>
+  <ul style="padding:20px;">
+    {% for tag in tag_list %}
+    <li class="left">
+      <a href="{% url 'blog:tag' tag.name %}" style="font-size: {{tag.font_size}}px; color: {{tag.color}} ">{{ tag.name }}</a>
+    </li>
+
+    {% empty %}
+    暂无标签！
+    {% endfor %}
+  </ul>
+</div>
+{% endblock main %}

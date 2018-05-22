@@ -19,7 +19,7 @@
                         <div class="card-content">
                         <p class="ultra-small">
     <time class="entry-date" datetime="{{ post.created_time }}">
-        {{ post.created_time }}</time>
+        {{ post.created_time|date:"d/m/Y"  }}</time>
         <span class="ultra-small right">
         	<i class="tiny material-icons">remove_red_eye</i><font size="1" color="grey"> {{ post.views }}</font>
 <i class="tiny material-icons">mode_comment</i>
